@@ -1,5 +1,6 @@
 package ru.mehanik.emicompendium;
 
+import net.minecraft.resources.Identifier;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import org.slf4j.Logger;
@@ -16,6 +17,13 @@ public final class EmiCompendium {
         LOGGER.info(
             "Loading EMI Compendium {}",
             container.getModInfo().getVersion()
+        );
+    }
+
+    public static Identifier id(String path) {
+        return Identifier.fromNamespaceAndPath(
+            MOD_ID,
+            path
         );
     }
 }

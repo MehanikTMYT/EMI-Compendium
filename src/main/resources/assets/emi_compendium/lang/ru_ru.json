@@ -1,3 +1,21 @@
 {
-  "emi_compendium.name": "Энциклопедия EMI"
+  "emi_compendium.name": "Энциклопедия EMI",
+
+  "emi.category.emi_compendium.beacon": "Информация о маяке",
+  "emi.category.emi_compendium.conduit": "Информация о проводнике",
+
+  "emi_compendium.recipe.beacon.base.title": "Основание маяка",
+  "emi_compendium.recipe.beacon.base.tooltip": "Допустимые блоки пирамиды маяка",
+  "emi_compendium.recipe.beacon.base.line_1": "Пирамида строится",
+  "emi_compendium.recipe.beacon.base.line_2": "под маяком",
+
+  "emi_compendium.recipe.beacon.payment.title": "Оплата маяка",
+  "emi_compendium.recipe.beacon.payment.tooltip": "Допустимые предметы оплаты",
+  "emi_compendium.recipe.beacon.payment.line_1": "При выборе эффектов",
+  "emi_compendium.recipe.beacon.payment.line_2": "расходуется один предмет",
+
+  "emi_compendium.recipe.conduit.frame.title": "Рамка проводника",
+  "emi_compendium.recipe.conduit.frame.tooltip": "Допустимые блоки рамки",
+  "emi_compendium.recipe.conduit.frame.line_1": "Рамка строится вокруг",
+  "emi_compendium.recipe.conduit.frame.line_2": "проводника"
 }

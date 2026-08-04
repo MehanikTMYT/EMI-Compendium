@@ -1,3 +1,21 @@
 {
-  "emi_compendium.name": "EMI Compendium"
+  "emi_compendium.name": "EMI Compendium",
+
+  "emi.category.emi_compendium.beacon": "Beacon Information",
+  "emi.category.emi_compendium.conduit": "Conduit Information",
+
+  "emi_compendium.recipe.beacon.base.title": "Beacon Base",
+  "emi_compendium.recipe.beacon.base.tooltip": "Valid beacon pyramid blocks",
+  "emi_compendium.recipe.beacon.base.line_1": "Build the pyramid below",
+  "emi_compendium.recipe.beacon.base.line_2": "the beacon",
+
+  "emi_compendium.recipe.beacon.payment.title": "Beacon Payment",
+  "emi_compendium.recipe.beacon.payment.tooltip": "Valid beacon payment items",
+  "emi_compendium.recipe.beacon.payment.line_1": "One item is consumed",
+  "emi_compendium.recipe.beacon.payment.line_2": "when applying effects",
+
+  "emi_compendium.recipe.conduit.frame.title": "Conduit Frame",
+  "emi_compendium.recipe.conduit.frame.tooltip": "Valid conduit frame blocks",
+  "emi_compendium.recipe.conduit.frame.line_1": "Place frame blocks around",
+  "emi_compendium.recipe.conduit.frame.line_2": "the conduit"
 }
