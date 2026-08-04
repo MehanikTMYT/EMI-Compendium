@@ -1,0 +1,119 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.143'
+    id 'idea'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+
+    withSourcesJar()
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+neoForge {
+    version = project.neo_version
+
+    runs {
+        client {
+            client()
+
+            systemProperty(
+                'neoforge.enabledGameTestNamespaces',
+                project.mod_id
+            )
+        }
+
+        configureEach {
+            logLevel = org.slf4j.event.Level.INFO
+        }
+    }
+
+    mods {
+        emi_compendium {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+dependencies {
+    compileOnly(
+        "dev.emi:emi-neoforge:${emi_version}:api"
+    )
+
+    localRuntime(
+        "dev.emi:emi-neoforge:${emi_version}"
+    )
+}
+
+def metadataProperties = [
+    mod_id                  : mod_id,
+    mod_name                : mod_name,
+    mod_version             : mod_version,
+    mod_license             : mod_license,
+    minecraft_version_range : minecraft_version_range,
+    neo_version             : neo_version
+]
+
+tasks.named('processResources', ProcessResources).configure {
+    inputs.properties metadataProperties
+
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand metadataProperties
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    archiveFileName =
+        "emi-compendium-${project.version}-26.1.2-neoforge.jar"
+
+    manifest {
+        attributes(
+            'Automatic-Module-Name':
+                'ru.mehanik.emicompendium'
+        )
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 25
+}
+
+tasks.withType(AbstractArchiveTask).configureEach {
+    reproducibleFileOrder = true
+    preserveFileTimestamps = false
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
