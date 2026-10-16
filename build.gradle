@@ -64,13 +64,50 @@ dependencies {
     )
 }
 
+// Jar modules (2026-10-15): EMI addons with a build of their own (MultiLoader/Architectury), built in their fork trees
+// under ../emi-addons and merged here — classes/resources copied, their mods.toml replaced by blocks in ours,
+// clashing root files renamed per mod id (logo, LICENSE, access transformer). Each keeps its own mod id.
+def jarModules = [
+        [id: 'aci', jar: "../emi-addons/AdvancedLootInfo/aci/neoforge/build/libs/AdvancedCoreInfo-neoforge-26.1.2-${aci_version}.jar"],
+        [id: 'ali', jar: "../emi-addons/AdvancedLootInfo/ali/neoforge/build/libs/AdvancedLootInfo-neoforge-26.1.2-${ali_version}.jar"],
+        [id: 'awi', jar: "../emi-addons/AdvancedLootInfo/awi/neoforge/build/libs/AdvancedWorldgenInfo-neoforge-26.1.2-${awi_version}.jar"],
+        [id: 'alicompat', jar: "../emi-addons/AdvancedLootInfo/alicompat/neoforge/build/libs/ALICompat-neoforge-26.1.2-${alicompat_version}.jar"],
+        [id: 'justenoughbreeding', jar: "../emi-addons/JustEnoughBreeding/neoforge/build/libs/justenoughbreeding-neoforge-26.1-${justenoughbreeding_version}.jar"],
+        [id: 'uei', jar: "../emi-addons/UniversalEnchantmentInfo/neoforge/build/libs/UniversalEnchantmentInfo-26.1.2-neoforge-${uei_version}.jar"],
+]
+
+dependencies {
+    jarModules.each { m -> compileOnly files(m.jar) }
+}
+
+tasks.named('jar', Jar).configure {
+    jarModules.each { m ->
+        from(zipTree(file(m.jar))) {
+            exclude 'META-INF/neoforge.mods.toml', 'META-INF/MANIFEST.MF', 'pack.mcmeta', 'architectury.common.json',
+                    'uei.rrv.mixins.json'
+            eachFile { d ->
+                switch (d.path) {
+                    case 'META-INF/accesstransformer.cfg': d.path = "META-INF/${m.id}_at.cfg"; break
+                    case 'logo.png': d.path = "${m.id}_logo.png"; break
+                    case 'icon.png': d.path = "${m.id}_logo.png"; break
+                    case 'catalogue-icon.png': d.path = "${m.id}_catalogue-icon.png"; break
+                    case 'LICENSE': d.path = "LICENSE-${m.id}"; break
+                }
+            }
+        }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 def metadataProperties = [
     mod_id                  : mod_id,
     mod_name                : mod_name,
     mod_version             : mod_version,
     mod_license             : mod_license,
     minecraft_version_range : minecraft_version_range,
-    neo_version             : neo_version
+    neo_version             : neo_version,
+    aci_version: aci_version, ali_version: ali_version, awi_version: awi_version, alicompat_version: alicompat_version,
+    justenoughbreeding_version: justenoughbreeding_version, uei_version: uei_version
 ]
 
 tasks.named('processResources', ProcessResources).configure {

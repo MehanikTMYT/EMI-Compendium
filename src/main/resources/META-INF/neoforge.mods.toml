@@ -30,3 +30,100 @@ type="required"
 versionRange="[1.1.24,)"
 ordering="AFTER"
 side="CLIENT"
+
+# ---- jar modules (each keeps its own mod id; sources: forks/emi-addons) ----
+
+[[mods]]
+modId="aci"
+version="${aci_version}"
+displayName="Advanced Core Info (EMI Compendium)"
+authors="Yanny"
+logoFile="aci_logo.png"
+description='''Shared core library for Advanced Loot Info and Advanced Worldgen Info. MIT. Part of EMI Compendium.'''
+
+[[accessTransformers]]
+file="META-INF/aci_at.cfg"
+
+[[mods]]
+modId="ali"
+version="${ali_version}"
+displayName="Advanced Loot Info (EMI Compendium)"
+authors="Yanny"
+logoFile="ali_logo.png"
+description='''Loot tables and villager trades in EMI, with conditions, functions and chances. MIT. Part of EMI Compendium.'''
+
+[[mixins]]
+config="ali.mixins.json"
+[[mixins]]
+config="ali.neoforge.mixins.json"
+[[mixins]]
+config="ali.lootjs.mixins.json"
+[[mixins]]
+config="ali.emi.mixins.json"
+
+[[accessTransformers]]
+file="META-INF/ali_at.cfg"
+
+[[dependencies.ali]]
+modId="aci"
+type="required"
+versionRange="[1.5,)"
+ordering="AFTER"
+side="BOTH"
+
+[[mods]]
+modId="awi"
+version="${awi_version}"
+displayName="Advanced Worldgen Info (EMI Compendium)"
+authors="Yanny"
+logoFile="awi_logo.png"
+description='''World generation in EMI: which features and blocks a biome places, where and how often. MIT. Part of EMI Compendium.'''
+
+[[mixins]]
+config="awi.mixins.json"
+[[mixins]]
+config="awi.emi.mixins.json"
+
+[[accessTransformers]]
+file="META-INF/awi_at.cfg"
+
+[[dependencies.awi]]
+modId="aci"
+type="required"
+versionRange="[1.5,)"
+ordering="AFTER"
+side="BOTH"
+
+[[mods]]
+modId="alicompat"
+version="${alicompat_version}"
+displayName="ALICompat (EMI Compendium)"
+authors="Yanny"
+logoFile="alicompat_logo.png"
+description='''Advanced Loot Info support for mods without their own plugin. MIT. Part of EMI Compendium.'''
+
+[[dependencies.alicompat]]
+modId="ali"
+type="required"
+versionRange="[2.4,)"
+ordering="AFTER"
+side="BOTH"
+
+[[mods]]
+modId="justenoughbreeding"
+version="${justenoughbreeding_version}"
+displayName="Just Enough Breeding (EMI Compendium)"
+authors="Christofmeg"
+logoFile="justenoughbreeding_logo.png"
+description='''Breeding, taming, trusting, temper, transformation and allay duplication info in EMI (fleet EMI plugin). MIT. Part of EMI Compendium.'''
+
+[[mods]]
+modId="uei"
+version="${uei_version}"
+displayName="Universal Enchantment Info (EMI Compendium)"
+authors="Suel-ki"
+logoFile="uei_logo.png"
+description='''Detailed enchantment information in EMI. MIT. Part of EMI Compendium.'''
+
+[[mixins]]
+config="uei.emi.mixins.json"
