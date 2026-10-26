@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 set -uo pipefail
 
-cd /root/home/forks/EMI-Compendium || exit 1
+cd "$(dirname "$0")/.." || exit 1
 
 JAVA25=/usr/lib/jvm/java-25-openjdk-amd64
-LOG=/root/home/forks/emi-compendium-26.1.2-build.log
+mkdir -p qa-artifacts
+LOG="$PWD/qa-artifacts/clean-build.log"
 
 export JAVA_HOME="$JAVA25"
 export PATH="$JAVA25/bin:$PATH"

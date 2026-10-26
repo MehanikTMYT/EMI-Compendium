@@ -81,6 +81,7 @@ dependencies {
 }
 
 tasks.named('jar', Jar).configure {
+    from('LICENSE')
     jarModules.each { m ->
         from(zipTree(file(m.jar))) {
             exclude 'META-INF/neoforge.mods.toml', 'META-INF/MANIFEST.MF', 'pack.mcmeta', 'architectury.common.json',
@@ -125,7 +126,7 @@ tasks.named('jar', Jar).configure {
     manifest {
         attributes(
             'Automatic-Module-Name':
-                'ru.mehanik.emicompendium'
+                'ru.mehtm.emicompendium'
         )
     }
 }

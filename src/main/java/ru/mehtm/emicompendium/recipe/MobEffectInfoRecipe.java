@@ -1,4 +1,4 @@
-package ru.mehanik.emicompendium.recipe;
+package ru.mehtm.emicompendium.recipe;
 
 import dev.emi.emi.api.EmiApi;
 import dev.emi.emi.api.recipe.EmiRecipe;
@@ -15,8 +15,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.FormattedCharSequence;
 import org.jspecify.annotations.Nullable;
-import ru.mehanik.emicompendium.EmiCompendium;
-import ru.mehanik.emicompendium.stack.MobEffectEmiStack;
+import ru.mehtm.emicompendium.EmiCompendium;
+import ru.mehtm.emicompendium.stack.MobEffectEmiStack;
 
 import java.util.List;
 

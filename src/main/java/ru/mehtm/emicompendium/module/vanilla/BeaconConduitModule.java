@@ -1,4 +1,4 @@
-package ru.mehanik.emicompendium.module.vanilla;
+package ru.mehtm.emicompendium.module.vanilla;
 
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
@@ -6,9 +6,9 @@ import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Items;
-import ru.mehanik.emicompendium.EmiCompendium;
-import ru.mehanik.emicompendium.api.CompendiumModule;
-import ru.mehanik.emicompendium.recipe.StaticInfoRecipe;
+import ru.mehtm.emicompendium.EmiCompendium;
+import ru.mehtm.emicompendium.api.CompendiumModule;
+import ru.mehtm.emicompendium.recipe.StaticInfoRecipe;
 
 import java.util.List;
 

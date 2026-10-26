@@ -1,4 +1,4 @@
-package ru.mehanik.emicompendium.recipe;
+package ru.mehtm.emicompendium.recipe;
 
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
@@ -13,7 +13,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import org.jspecify.annotations.Nullable;
-import ru.mehanik.emicompendium.EmiCompendium;
+import ru.mehtm.emicompendium.EmiCompendium;
 
 import java.util.List;
 

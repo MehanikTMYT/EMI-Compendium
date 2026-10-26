@@ -1,4 +1,4 @@
-package ru.mehanik.emicompendium.stack;
+package ru.mehtm.emicompendium.stack;
 
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.stack.serializer.EmiStackSerializer;
@@ -38,7 +38,8 @@ public final class MobEffectEmiStack extends EmiStack {
 
     @Override
     public EmiStack copy() {
-        return new MobEffectEmiStack(effect);
+        return new MobEffectEmiStack(effect).setAmount(getAmount()).setChance(getChance())
+            .setRemainder(getRemainder()).comparison(comparison);
     }
 
     @Override
@@ -109,7 +110,7 @@ public final class MobEffectEmiStack extends EmiStack {
         @Override
         public EmiStack create(Identifier id, DataComponentPatch componentChanges, long amount) {
             return BuiltInRegistries.MOB_EFFECT.get(id)
-                .<EmiStack>map(MobEffectEmiStack::new)
+                .<EmiStack>map(effect -> new MobEffectEmiStack(effect).setAmount(amount))
                 .orElse(EmiStack.EMPTY);
         }
 

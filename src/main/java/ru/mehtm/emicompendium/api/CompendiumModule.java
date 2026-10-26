@@ -1,4 +1,4 @@
-package ru.mehanik.emicompendium.api;
+package ru.mehtm.emicompendium.api;
 
 import dev.emi.emi.api.EmiInitRegistry;
 import dev.emi.emi.api.EmiRegistry;

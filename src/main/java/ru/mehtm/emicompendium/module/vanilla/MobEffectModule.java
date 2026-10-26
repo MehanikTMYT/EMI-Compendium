@@ -1,4 +1,4 @@
-package ru.mehanik.emicompendium.module.vanilla;
+package ru.mehtm.emicompendium.module.vanilla;
 
 import dev.emi.emi.api.EmiInitRegistry;
 import dev.emi.emi.api.EmiRegistry;
@@ -23,10 +23,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.entity.BeaconBlockEntity;
-import ru.mehanik.emicompendium.EmiCompendium;
-import ru.mehanik.emicompendium.api.CompendiumModule;
-import ru.mehanik.emicompendium.recipe.MobEffectInfoRecipe;
-import ru.mehanik.emicompendium.stack.MobEffectEmiStack;
+import ru.mehtm.emicompendium.EmiCompendium;
+import ru.mehtm.emicompendium.api.CompendiumModule;
+import ru.mehtm.emicompendium.recipe.MobEffectInfoRecipe;
+import ru.mehtm.emicompendium.stack.MobEffectEmiStack;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -58,7 +58,7 @@ public final class MobEffectModule implements CompendiumModule {
         registry.addRegistryAdapter(EmiRegistryAdapter.simple(
             MobEffect.class,
             BuiltInRegistries.MOB_EFFECT,
-            (effect, arg, amount) -> new MobEffectEmiStack(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect))
+            (effect, arg, amount) -> new MobEffectEmiStack(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect)).setAmount(amount)
         ));
     }
 
@@ -114,10 +114,41 @@ public final class MobEffectModule implements CompendiumModule {
             }
         }
 
+        appendExtraStacks(sources);
+
         sources.forEach((effect, list) -> {
             MobEffectEmiStack stack = new MobEffectEmiStack(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect));
             registry.addEmiStack(stack);
             registry.addRecipe(new MobEffectInfoRecipe(EFFECT, stack, List.copyOf(list)));
         });
     }
+
+    /** EMIffect resource-pack format, resolved again on each EMI registration/reload. */
+    private static void appendExtraStacks(Map<MobEffect, List<EmiIngredient>> sources) {
+        var resources = net.minecraft.client.Minecraft.getInstance().getResourceManager();
+        resources.listResourceStacks("emiffect/extra_stacks", id -> id.getPath().endsWith(".json"))
+            .forEach((resourceId, stack) -> {
+                for (var resource : stack) {
+                    try (var reader = resource.openAsReader()) {
+                        var json = com.google.gson.JsonParser.parseReader(reader).getAsJsonObject();
+                        var effectId = net.minecraft.resources.Identifier.parse(json.get("id").getAsString());
+                        var holder = BuiltInRegistries.MOB_EFFECT.get(effectId);
+                        if (holder.isEmpty()) {
+                            EmiCompendium.LOGGER.warn("Unknown extra_stacks effect {} in {}", effectId, resourceId);
+                            continue;
+                        }
+                        var target = sources.get(holder.get().value());
+                        for (var element : json.getAsJsonArray("stacks")) {
+                            var ingredient = dev.emi.emi.api.stack.serializer.EmiIngredientSerializer.getDeserialized(element);
+                            if (!ingredient.isEmpty() && !target.contains(ingredient)) {
+                                target.add(ingredient);
+                            }
+                        }
+                    } catch (Exception exception) {
+                        EmiCompendium.LOGGER.warn("Cannot load extra_stacks resource {}", resourceId, exception);
+                    }
+                }
+            });
+    }
+
 }

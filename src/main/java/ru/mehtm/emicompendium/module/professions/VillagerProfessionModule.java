@@ -1,4 +1,4 @@
-package ru.mehanik.emicompendium.module.vanilla;
+package ru.mehtm.emicompendium.module.professions;
 
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
@@ -10,9 +10,8 @@ import net.minecraft.world.entity.npc.villager.VillagerProfession;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
-import ru.mehanik.emicompendium.EmiCompendium;
-import ru.mehanik.emicompendium.api.CompendiumModule;
-import ru.mehanik.emicompendium.recipe.VillagerProfessionRecipe;
+import ru.mehtm.emicompendium.EmiCompendium;
+import ru.mehtm.emicompendium.api.CompendiumModule;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;

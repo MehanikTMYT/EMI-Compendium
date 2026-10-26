@@ -1,4 +1,4 @@
-package ru.mehanik.emicompendium.module.vanilla;
+package ru.mehtm.emicompendium.module.vanilla;
 
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
@@ -22,9 +22,9 @@ import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
-import ru.mehanik.emicompendium.EmiCompendium;
-import ru.mehanik.emicompendium.api.CompendiumModule;
-import ru.mehanik.emicompendium.recipe.BreedingRecipe;
+import ru.mehtm.emicompendium.EmiCompendium;
+import ru.mehtm.emicompendium.api.CompendiumModule;
+import ru.mehtm.emicompendium.recipe.BreedingRecipe;
 
 import java.util.ArrayList;
 import java.util.List;

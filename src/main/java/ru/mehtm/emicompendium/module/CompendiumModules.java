@@ -1,12 +1,12 @@
-package ru.mehanik.emicompendium.module;
+package ru.mehtm.emicompendium.module;
 
 import dev.emi.emi.api.EmiRegistry;
-import ru.mehanik.emicompendium.EmiCompendium;
-import ru.mehanik.emicompendium.api.CompendiumModule;
-import ru.mehanik.emicompendium.module.vanilla.BeaconConduitModule;
-import ru.mehanik.emicompendium.module.vanilla.BreedingModule;
-import ru.mehanik.emicompendium.module.vanilla.VillagerProfessionModule;
-import ru.mehanik.emicompendium.module.vanilla.MobEffectModule;
+import ru.mehtm.emicompendium.EmiCompendium;
+import ru.mehtm.emicompendium.api.CompendiumModule;
+import ru.mehtm.emicompendium.module.professions.VillagerProfessionModule;
+import ru.mehtm.emicompendium.module.vanilla.BeaconConduitModule;
+import ru.mehtm.emicompendium.module.vanilla.BreedingModule;
+import ru.mehtm.emicompendium.module.vanilla.MobEffectModule;
 import dev.emi.emi.api.EmiInitRegistry;
 
 import java.util.List;

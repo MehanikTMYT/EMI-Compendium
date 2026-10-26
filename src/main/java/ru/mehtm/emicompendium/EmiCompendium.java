@@ -1,4 +1,4 @@
-package ru.mehanik.emicompendium;
+package ru.mehtm.emicompendium;
 
 import net.minecraft.resources.Identifier;
 import net.neoforged.fml.ModContainer;

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /root/home/forks/EMI-Compendium
+cd "$(dirname "$0")/.."
 
 JAR="$(
     find build/libs \
@@ -26,12 +26,12 @@ grep -Fx 'META-INF/neoforge.mods.toml'
 printf '\n[MOD CLASS]\n'
 jar tf "$JAR" |
 grep -Fx \
-'ru/mehanik/emicompendium/EmiCompendium.class'
+'ru/mehtm/emicompendium/EmiCompendium.class'
 
 printf '\n[EMI PLUGIN]\n'
 jar tf "$JAR" |
 grep -Fx \
-'ru/mehanik/emicompendium/EmiCompendiumPlugin.class'
+'ru/mehtm/emicompendium/EmiCompendiumPlugin.class'
 
 printf '\n[JEI/JEMI AUDIT]\n'
 

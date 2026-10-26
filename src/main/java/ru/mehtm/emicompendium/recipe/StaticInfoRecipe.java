@@ -1,4 +1,4 @@
-package ru.mehanik.emicompendium.recipe;
+package ru.mehtm.emicompendium.recipe;
 
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
