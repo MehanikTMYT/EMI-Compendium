@@ -4,6 +4,7 @@ import dev.emi.emi.api.EmiRegistry;
 import ru.mehtm.emicompendium.EmiCompendium;
 import ru.mehtm.emicompendium.api.CompendiumModule;
 import ru.mehtm.emicompendium.module.professions.VillagerProfessionModule;
+import ru.mehtm.emicompendium.module.smithing.SmithingViewerModule;
 import ru.mehtm.emicompendium.module.vanilla.BeaconConduitModule;
 import ru.mehtm.emicompendium.module.vanilla.BreedingModule;
 import ru.mehtm.emicompendium.module.vanilla.MobEffectModule;
@@ -17,7 +18,8 @@ public final class CompendiumModules {
             new BeaconConduitModule(),
             new VillagerProfessionModule(),
             new MobEffectModule(),
-            new BreedingModule()
+            new BreedingModule(),
+            new SmithingViewerModule()
         );
 
     private CompendiumModules() {
@@ -25,8 +27,15 @@ public final class CompendiumModules {
 
     /** Own modules that duplicate a bundled jar module are skipped (breeding → Just Enough Breeding). */
     private static boolean isEnabled(CompendiumModule module) {
-        return !("breeding".equals(module.id())
-            && net.neoforged.fml.ModList.get().isLoaded("justenoughbreeding"));
+        if ("breeding".equals(module.id())) {
+            return !net.neoforged.fml.ModList.get().isLoaded("justenoughbreeding");
+        }
+        if ("smithing".equals(module.id())) {
+            // The official Smithing Template Viewer may ship its own EMI plugin;
+            // never register a second trim viewer category next to it.
+            return !SmithingViewerModule.providesOwnEmiPlugin();
+        }
+        return true;
     }
 
     public static void initializeAll(EmiInitRegistry registry) {
@@ -44,7 +53,7 @@ public final class CompendiumModules {
 
         for (CompendiumModule module : MODULES) {
             if (!isEnabled(module)) {
-                EmiCompendium.LOGGER.info("Skipping EMI module {} (covered by a bundled mod)", module.id());
+                EmiCompendium.LOGGER.info("Skipping EMI module {} (covered by another mod)", module.id());
                 continue;
             }
             EmiCompendium.LOGGER.info(

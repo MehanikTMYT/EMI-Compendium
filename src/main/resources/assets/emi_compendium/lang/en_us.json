@@ -66,5 +66,7 @@
   "emi_compendium.recipe.breeding.food": "Breeding food",
   "emi_compendium.recipe.breeding.spawn_egg": "Animal",
   "emi_compendium.recipe.breeding.offspring": "Offspring",
-  "emi_compendium.recipe.breeding.tamed": "Both parents must be tamed"
+  "emi_compendium.recipe.breeding.tamed": "Both parents must be tamed",
+  "emi.category.emi_compendium.smithing": "Smithing Trim Viewer",
+  "emi_compendium.recipe.smithing.any_item": "Use any item!"
 }

@@ -66,5 +66,7 @@
   "emi_compendium.recipe.breeding.food": "Корм для разведения",
   "emi_compendium.recipe.breeding.spawn_egg": "Животное",
   "emi_compendium.recipe.breeding.offspring": "Потомство",
-  "emi_compendium.recipe.breeding.tamed": "Оба родителя должны быть приручены"
+  "emi_compendium.recipe.breeding.tamed": "Оба родителя должны быть приручены",
+  "emi.category.emi_compendium.smithing": "Просмотр кузнечной отделки",
+  "emi_compendium.recipe.smithing.any_item": "Подойдёт любой предмет!"
 }

@@ -32,7 +32,8 @@ with ZipFile(jars[0]) as z:
     metadata = tomllib.loads(z.read('META-INF/neoforge.mods.toml').decode())
     ids = [mod['modId'] for mod in metadata['mods']]
     assert len(ids) == len(set(ids)) == 7, ids
-    for mod in ['aci', 'ali', 'awi', 'alicompat', 'justenoughbreeding', 'uei', 'emiprofessions', 'emiffect']:
+    for mod in ['aci', 'ali', 'awi', 'alicompat', 'justenoughbreeding', 'uei', 'emiprofessions', 'emiffect',
+                'smithingtemplateviewer']:
         assert b'Copyright' in z.read('LICENSE-' + mod), mod
     en = json.loads(z.read('assets/emi_compendium/lang/en_us.json'))
     ru = json.loads(z.read('assets/emi_compendium/lang/ru_ru.json'))

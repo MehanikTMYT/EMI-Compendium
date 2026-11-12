@@ -28,9 +28,28 @@ repositories {
 neoForge {
     version = project.neo_version
 
+    mods {
+        // -PrunPackaged: no sourceSet mod — the client QA runs the packaged JAR
+        // from run/mods instead (exactly the artifact that ships).
+        if (!project.hasProperty('runPackaged')) {
+            emi_compendium {
+                sourceSet sourceSets.main
+            }
+        }
+    }
+
     runs {
         client {
             client()
+
+            // -PquickPlay=<world> : QA client joins run/saves/<world> directly
+            // (fleet client QA pattern; see skill mc-fleet-build-qa)
+            if (project.hasProperty('quickPlay')) {
+                programArguments.addAll(
+                    '--quickPlaySingleplayer', project.property('quickPlay').toString(),
+                    '--width', '1280', '--height', '720'
+                )
+            }
 
             systemProperty(
                 'neoforge.enabledGameTestNamespaces',
@@ -38,14 +57,13 @@ neoForge {
             )
         }
 
+        server {
+            server()
+            programArgument '--nogui'
+        }
+
         configureEach {
             logLevel = org.slf4j.event.Level.INFO
-        }
-    }
-
-    mods {
-        emi_compendium {
-            sourceSet sourceSets.main
         }
     }
 }
@@ -59,9 +77,11 @@ dependencies {
         "dev.emi:emi-neoforge:${emi_version}:api"
     )
 
-    localRuntime(
-        "dev.emi:emi-neoforge:${emi_version}"
-    )
+    if (!project.hasProperty('runPackaged')) {
+        localRuntime(
+            "dev.emi:emi-neoforge:${emi_version}"
+        )
+    }
 }
 
 // Jar modules (2026-10-15): EMI addons with a build of their own (MultiLoader/Architectury), built in their fork trees
